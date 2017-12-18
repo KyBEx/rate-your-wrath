@@ -10,16 +10,18 @@ const ModalWrapper = props => {
         props.closeModal();
     }
     return (
+        <div>
         <header>
-        <div>
-            <h1>Modal Test</h1>
+            <h4>{props.modal.name} Your Wrath</h4>
             <button onClick = {closeModal}>Close</button>
-        </div>
-        <div>
+        </header>
         {props.children}
         </div>
-        </header>
     )
 }
 
-export default connect(null, {closeModal})(ModalWrapper)
+function mapStateToProps(state) {
+    return state
+}
+
+export default connect(mapStateToProps, {closeModal})(ModalWrapper)

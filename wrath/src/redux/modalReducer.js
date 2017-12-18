@@ -23,7 +23,8 @@ export default function modalReducer(prevState = {}, action) {
         case "ADD_MODAL":
             return {
                 modalChoice: "ADD_ITEM",
-                modalShow: true
+                modalShow: true,
+                name: "Add"
             };
         case "CLOSE_MODAL":
             return {
@@ -32,7 +33,8 @@ export default function modalReducer(prevState = {}, action) {
         case "UPDATE_MODAL":
             return {
                 modalChoice: "UPDATE_ITEM",
-                modalShow: true
+                modalShow: true,
+                name: "Update"
             };
         default:
             return prevState
