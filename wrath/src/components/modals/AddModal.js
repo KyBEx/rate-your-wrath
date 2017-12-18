@@ -6,14 +6,14 @@ import ModalWrapper from "./ModalWrapper";
 
 const AddModal = props => {
     let show = props.modal.modalShow ? true : false;
-    console.log(props.modalShow)
+
 
     return (
         <main>
         {show && <ModalWrapper>
-            <div>
-                <a>Click here to close</a>
-            </div>
+                <div>
+                    <p>Add info</p>
+                </div>
         </ModalWrapper>}
         </main>
 

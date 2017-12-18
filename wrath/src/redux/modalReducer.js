@@ -6,6 +6,12 @@ export function addModal() {
     }
 }
 
+export function updateModal() {
+    return {
+        type: "UPDATE_MODAL",
+    }
+}
+
 export function closeModal() {
     return {
         type: "CLOSE_MODAL",
@@ -23,7 +29,11 @@ export default function modalReducer(prevState = {}, action) {
             return {
                 modalShow: false
             };
-
+        case "UPDATE_MODAL":
+            return {
+                modalChoice: "UPDATE_ITEM",
+                modalShow: true
+            };
         default:
             return prevState
     }

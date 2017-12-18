@@ -4,15 +4,15 @@ import ModalWrapper from "./ModalWrapper";
 // that close function can come from modalWrapper
 
 
-const AddModal = props => {
+const UpdateModal = props => {
     let show = props.modal.modalShow ? true : false;
-    console.log(props.modalShow)
+
 
     return (
         <main>
         {show && <ModalWrapper>
             <div>
-                <a>Click here to close</a>
+                <p>Update info</p>
             </div>
         </ModalWrapper>}
         </main>
@@ -21,4 +21,4 @@ const AddModal = props => {
 }
 
 
-export default AddModal
+export default UpdateModal

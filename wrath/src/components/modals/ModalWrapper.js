@@ -15,6 +15,9 @@ const ModalWrapper = props => {
             <h1>Modal Test</h1>
             <button onClick = {closeModal}>Close</button>
         </div>
+        <div>
+        {props.children}
+        </div>
         </header>
     )
 }
