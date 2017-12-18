@@ -1,8 +1,14 @@
 import React from "react";
+import Home from "./homepage/HomeContainer";
+import ModalSwitch from "./modals/ModalSwitch";
 
-export default function App(props) {
+
+export default function App(props){
 
     return (
-        <h1>Hi</h1>
+        <main>
+        <Home/>
+        <ModalSwitch/>
+        </main>
     )
 }
