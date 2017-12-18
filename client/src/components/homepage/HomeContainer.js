@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { addModal, updateModal } from "../../redux/modalReducer"
 
  function Home (props) {
-     console.log(props)
     return (
         <main>
             <h1>RATE YOUR WRATH</h1>

@@ -33,7 +33,7 @@ const postSchema = new Schema ( {
         required: true
     },
 
-    executed: {
+    punDone: {
         type: Boolean,
         default: false
     }

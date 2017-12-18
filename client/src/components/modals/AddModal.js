@@ -1,5 +1,7 @@
 import React from "react";
 import ModalWrapper from "./ModalWrapper";
+import { connect } from "react-redux";
+import { addData } from "../../redux/dbReducer"
 
 class AddModal extends React.Component {
     constructor() {
@@ -19,6 +21,7 @@ class AddModal extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
+        this.props.addData(this.state)
         // will have to use middleware to do an axios call here to submit the data
         // create another reducer file for dB interactions
         this.setState({
@@ -99,4 +102,4 @@ class AddModal extends React.Component {
 }
 
 
-export default AddModal
+export default connect(null, { addData })(AddModal)

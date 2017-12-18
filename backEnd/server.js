@@ -10,7 +10,8 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/wrath-post');
 server.use(bodyParser.json())
 
-server.use("/", require("./routes/postHandle"));
+
+server.use("/post", require("./routes/postHandle"));
 
 
 
