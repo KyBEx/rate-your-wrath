@@ -5,13 +5,10 @@ const Post = require('../models/post');
 
 storeRouter.route('/')
     .get((req, res) => {
-        console.log(req.query)
-        Post.find(req.query)
-        .exec((err,items) => {
+        Post.find((err, items) => {
             if (err) return res.status(500).send(err);
             res.send(items)
-        });
-
+        })
     })
     .post((req,res) => {
         let newItem = new Post(req.body);

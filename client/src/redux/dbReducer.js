@@ -1,23 +1,23 @@
 import axios from "axios"
 
-export function getData(query) {
-    function getProps(query){const propNames = Object.getOwnPropertyNames(query);
-        const queryStrings = propNames.map(propName => {
-            return propName+"="+query[propName]
-        })
-            return queryStrings
-        }
-    const qParams = query ? getProps(query) : null
-    return dispatch => {
-        axios.get(`/post?${qParams}`)
-        .then(response => {
-            dispatch({
-                type: "GET_DATA",
-                data: response.data
-            })
-        })
-    }
-}
+// export function getData(query) {
+//     function getProps(query){const propNames = Object.getOwnPropertyNames(query);
+//         const queryStrings = propNames.map(propName => {
+//             return propName+"="+query[propName]
+//         })
+//             return queryStrings
+//         }
+//     const qParams = query ? getProps(query) : null
+//     return dispatch => {
+//         axios.get(`/post?${qParams}`)
+//         .then(response => {
+//             dispatch({
+//                 type: "GET_DATA",
+//                 data: response.data
+//             })
+//         })
+//     }
+// }
 
 export function getAllData() {
     return dispatch => {axios.get("/post").then(response => {
@@ -62,15 +62,14 @@ export default function dbReducer(prevState = {}, action) {
         //     return {
         //         modalShow: false
         //     };
-        case "GET_DATA":
-            return {
-                results: action.data,
-                filterData: prevState.filterData
-            };
+        // case "GET_DATA":
+        //     return {
+        //         results: action.data,
+        //         filterData: prevState.filterData
+        //     };
         case "GET_ALL_DATA":
             return {
                 results: action.data,
-                filterData: action.data
             }
         // case "DELETE_DATA":
         //     return {
