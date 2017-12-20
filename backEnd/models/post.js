@@ -34,8 +34,8 @@ const postSchema = new Schema ( {
     },
 
     punDone: {
-        type: Boolean,
-        default: false
+        type: String,
+        default: "false"
     }
 }, {
     timestamps: true

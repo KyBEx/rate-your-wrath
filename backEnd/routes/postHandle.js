@@ -5,7 +5,9 @@ const Post = require('../models/post');
 
 storeRouter.route('/')
     .get((req, res) => {
-        Post.find((err,items) => {
+        console.log(req.query)
+        Post.find(req.query)
+        .exec((err,items) => {
             if (err) return res.status(500).send(err);
             res.send(items)
         });
@@ -13,6 +15,7 @@ storeRouter.route('/')
     })
     .post((req,res) => {
         let newItem = new Post(req.body);
+        newItem.date = new Date(newItem.date);
         newItem.save((err, item) => {
             if(err) return res.status(500).send(err);
             res.status(201).send(item)
@@ -32,7 +35,7 @@ storeRouter.route("/:id")
             res.send({msg: "Removed item", item})
         })
     })
-    
+
     .put((req,res) => {
         Post.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, item) => {
             let update = Object.assign(item, req.body);
