@@ -37,6 +37,20 @@ import { getData, getAllData } from "../../redux/dbReducer";
 
         }) : null
 
+        // const severity = Object.keys(this.props.data).length ? this.props.data.
+
+        const stateData = this.state;
+        console.log(stateData)
+
+        const filteredData = Object.keys(this.props.data).length ? this.props.data.results.filter(data => {
+            for (let key in stateData) {
+                if(stateData[key] !== data[key]) {
+                    return false
+                }
+            }
+            return true
+        }) : null
+
         const data = Object.keys(this.props.data).length ? this.props.data.results.map(data => {
             return (
                 <div key={data._id}>
