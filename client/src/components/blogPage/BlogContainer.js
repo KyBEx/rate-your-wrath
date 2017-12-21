@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAllData } from "../../redux/dbReducer";
+import { getAllData, deleteData } from "../../redux/dbReducer";
 
  class BlogContainer extends React.Component {
     constructor() {
@@ -9,6 +9,7 @@ import { getAllData } from "../../redux/dbReducer";
 
         }
         this.handleChange = this.handleChange.bind(this);
+        this.delete = this.delete.bind(this);
     }
 
     componentDidMount() {
@@ -26,31 +27,34 @@ import { getAllData } from "../../redux/dbReducer";
         });
     }
 
+    delete(url) {
+        this.props.deleteData(url)
+    }
+
     render() {
-        // setting up the options for the 'hellion' filter
-        const hellion = Object.keys(this.props.data).length ? this.props.data.results.map((data, i) => {
-            let check = this.props.data.results.findIndex(item=> item.hellion === data.hellion);
+        // setting up the options for the filter
+
+        const hellion = this.props.results ? this.props.results.map((data, i) => {
+            let check = this.props.results.findIndex(item=> item.hellion === data.hellion);
             if (check === i) {
                 return <option value = {data.hellion} key = {data._id+data.hellion}>{data.hellion}</option>
             }
 
         }) : null
-        // setting up the options for the 'severity' filter
-        const severity = Object.keys(this.props.data).length ? this.props.data.results.map((data, i) => {
-            let check = this.props.data.results.findIndex(item => item.severity === data.severity);
-            if (check === i) {
-                return <option value = {data.severity} key = {data._id+data.severity}>{data.severity}</option>
-            }
 
-        }) : null
-        console.log(severity)
+        const severity=[];
+        function fillArray() {
+            for (let i = 1; i < 6; i++){
+                severity.push(<option key={i} value={i}>{i}</option>)
+            }
+        }
+        fillArray();
+
 
         const stateData = this.state;
-        console.log(stateData)
 
-        const filteredData = Object.keys(this.props.data).length ? this.props.data.results.filter(data => {
+        const filteredData = this.props.results ? this.props.results.filter(data => {
             for (let key in stateData) {
-
                 if(stateData[key] !== data[key] && stateData[key] !== "default") {
                     return false
                 }
@@ -70,12 +74,13 @@ import { getAllData } from "../../redux/dbReducer";
                     <p>Message: {data.message}</p>
                     <p>Punishment: {data.punishment}</p>
                     <p>Punishment Completed: {data.punDone}</p>
+                    <button onClick={()=> {this.delete(data._id)}}>Delete</button>
                 </div>
             )
         })
         : <p>That selection has no data</p>
 
-        : Object.keys(this.props.data).length ? this.props.data.results.map(data => {
+        : this.props.results ? this.props.results.map(data => {
             return (
                 <div key={data._id}>
                     <p>Date: {data.date}</p>
@@ -85,24 +90,32 @@ import { getAllData } from "../../redux/dbReducer";
                     <p>Message: {data.message}</p>
                     <p>Punishment: {data.punishment}</p>
                     <p>Punishment Completed: {data.punDone}</p>
+                    <button onClick={()=> {this.delete(data._id)}}>Delete</button>
                 </div>
             )
         })
 
         : null
 
+
+
         return (
             <main>
             <select onChange = {this.handleChange} name="hellion" initialvalue="default">
-                <option value="default">Filter by Hellion</option>
+                <option value="default">Hellion</option>
                 {hellion}
             </select>
             <select onChange = {this.handleChange} name="severity" initialvalue="default">
-                <option value="default">Filter by Severity</option>
+                <option value="default">Severity</option>
                 {severity}
             </select>
+            <select onChange = {this.handleChange} name = "punDone" initialvalue="default">
+                <option value = "default">Punishment Completed</option>
+                <option value = "true">True</option>
+                <option value = "false">False</option>
+            </select>
                 <div>
-                  {data}
+                    {data}
                 </div>
             </main>
         )
@@ -110,7 +123,7 @@ import { getAllData } from "../../redux/dbReducer";
 }
 
 function mapStateToProps(state) {
-    return state
+    return state.data
 }
 
-export default connect(mapStateToProps, { getAllData })(BlogContainer)
+export default connect(mapStateToProps, { getAllData, deleteData })(BlogContainer)

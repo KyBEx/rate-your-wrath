@@ -91,7 +91,7 @@ class AddModal extends React.Component {
                         <option value="false">No</option>
                     </select>
                     <textarea onChange={this.onChange} name="message"></textarea>
-                    <button>Submit</button>
+                    <button>{this.props.name}</button>
                 </form>
 
         </ModalWrapper>}
@@ -100,6 +100,8 @@ class AddModal extends React.Component {
     )
   }
 }
+function mapStateToProps (state) {
+    return state.modal
+}
 
-
-export default connect(null, { addData })(AddModal)
+export default connect(mapStateToProps, { addData })(AddModal)

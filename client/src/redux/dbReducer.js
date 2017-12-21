@@ -48,35 +48,39 @@ export function updateData() {
     }
 }
 
-export function deleteData() {
-    return {
-        type: "DELETE_DATA",
+export function deleteData(url) {
+    return dispatch => {
+        axios.delete(`/post/${url}`)
+        .then(response => {
+            dispatch({
+                type:"DELETE_DATA",
+                data: response.data
+            })
+        })
     }
 }
 
 export default function dbReducer(prevState = {}, action) {
     switch(action.type) {
         case "ADD_DATA":
-            return prevState
-        // case "UPDATE_DATA":
-        //     return {
-        //         modalShow: false
-        //     };
-        // case "GET_DATA":
-        //     return {
-        //         results: action.data,
-        //         filterData: prevState.filterData
-        //     };
+            return prevState;
+
+        case "UPDATE_DATA":
+            return {
+                modalShow: false
+            };
+
         case "GET_ALL_DATA":
             return {
                 results: action.data,
             }
-        // case "DELETE_DATA":
-        //     return {
-        //         modalChoice: "UPDATE_ITEM",
-        //         modalShow: true,
-        //         name: "Update"
-        //     };
+        case "DELETE_DATA":
+            const results = [...prevState.results];
+            const newResults = results.filter(item => item._id !== action.data.item._id
+            );
+
+            return {results: newResults}
+            // return prevState.data.results.filter(item => item._id !== action.data._id)
         default:
             return prevState
     }
