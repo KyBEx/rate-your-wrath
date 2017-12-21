@@ -24,7 +24,7 @@ export default function modalReducer(prevState = {}, action) {
             return {
                 modalChoice: "ADD_ITEM",
                 modalShow: true,
-                name: "Add"
+                type: "Add",
             };
         case "CLOSE_MODAL":
             return {

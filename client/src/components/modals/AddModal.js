@@ -1,7 +1,8 @@
 import React from "react";
 import ModalWrapper from "./ModalWrapper";
 import { connect } from "react-redux";
-import { addData } from "../../redux/dbReducer"
+import { addData } from "../../redux/dbReducer";
+import ModalForm from "./ModalForm"
 
 class AddModal extends React.Component {
     constructor() {
@@ -22,8 +23,6 @@ class AddModal extends React.Component {
     handleSubmit(e){
         e.preventDefault();
         this.props.addData(this.state)
-        // will have to use middleware to do an axios call here to submit the data
-        // create another reducer file for dB interactions
         this.setState({
             date: "",
             hellion: "",
@@ -51,49 +50,12 @@ class AddModal extends React.Component {
     render() {
 
     let show = this.props.modal.modalShow ? true : false;
-    const style = {
-        textarea: {width: "100%",
-        height: "300px",
-        lineHeight:"300px",
-        verticalAlign: "top"},
-        main: {
-            width: "50%"
-        }
-    }
 
     return (
         <main>
         {show && <ModalWrapper>
-                <form onSubmit={this.handleSubmit}id="add">
-                    <input name="date" onChange={this.onChange} type="date" value={this.state.date}/>
-                    <input name="hellion" onChange={this.onChange} type="text" value={this.state.hellion} placeholder="Hellion responsible"/>
-                    <select onChange={this.onChange} name="frustration" initialvalue="default">
-                        <option value="default">Cause of Anger</option>
-                        <option value="Insubordination">Insubordination</option>
-                        <option value="Just plain stupid">Just plain stupid</option>
-                        <option value="Shades of Damien">Shades of Damien</option>
-                        <option value="BLARGH!">BLARGH!</option>
-                    </select>
-                    <input onChange={this.onChange} name="severity" value="1" type="radio"/>1
-                    <input onChange={this.onChange} name="severity" value="2" type="radio"/>2
-                    <input onChange={this.onChange} name="severity" value="3" type="radio"/>3
-                    <input onChange={this.onChange} name="severity" value="4" type="radio"/>4
-                    <input onChange={this.onChange} name="severity" value="5" type="radio"/>5
-                    <select name="punishment" onChange={this.onChange} initialvalue="default">
-                        <option name="" value="default">Choose your Wrath</option>
-                        <option value="grounding">Grounding</option>
-                        <option value="dishes">Dishes</option>
-                        <option value="banishment">Banishment</option>
-                    </select>
-                    <select name="punDone" onChange={this.onChange} initialvalue="default">
-                        <option value="default">Justice Dispensed?</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </select>
-                    <textarea onChange={this.onChange} name="message"></textarea>
-                    <button>{this.props.name}</button>
-                </form>
-
+                <ModalForm submit={this.handleSubmit} change={this.onChange}
+                state={this.state} type={this.props.modal.type}/>
         </ModalWrapper>}
         </main>
 
@@ -101,7 +63,7 @@ class AddModal extends React.Component {
   }
 }
 function mapStateToProps (state) {
-    return state.modal
+    return state
 }
 
 export default connect(mapStateToProps, { addData })(AddModal)
