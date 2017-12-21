@@ -29,6 +29,16 @@ export function getAllData() {
   }
 }
 
+export function getSpecificData(url) {
+    return dispatch => {axios.get(`./post/${url}`).then(response => {
+        dispatch({
+            type: "GET_SPECIFIC_DATA",
+            data: response.data
+        })
+    })
+  }
+}
+
 
 export function addData(data) {
     return dispatch => {
@@ -42,9 +52,14 @@ export function addData(data) {
     }
 }
 
-export function updateData() {
-    return {
-        type: "UPDATE_DATA",
+export function updateData(url) {
+    return dispatch => {
+        axios.put(`/post/${url}`)
+        .then(response => {
+            dispatch({
+                type: "UPDATE_DATA",
+            })
+        })
     }
 }
 
@@ -59,28 +74,43 @@ export function deleteData(url) {
         })
     }
 }
-
-export default function dbReducer(prevState = {}, action) {
+const initialState= {results: [],
+                    update: {date:"i",
+                    hellion:"i",
+                    frustration:"i",
+                    severity:"i",
+                    message:"i",
+                    punishment:"i",
+                    punDone:"i"}
+                    }
+export default function dbReducer(prevState = initialState, action) {
     switch(action.type) {
         case "ADD_DATA":
             return prevState;
 
+        case "GET_SPECIFIC_DATA":
+            return {
+                results: prevState.results,
+                update: action.data
+            };
+
         case "UPDATE_DATA":
             return {
-                modalShow: false
+                update: action.data
             };
 
         case "GET_ALL_DATA":
             return {
                 results: action.data,
-            }
+                update: prevState.update
+            };
+
         case "DELETE_DATA":
             const results = [...prevState.results];
             const newResults = results.filter(item => item._id !== action.data.item._id
             );
-
             return {results: newResults}
-            // return prevState.data.results.filter(item => item._id !== action.data._id)
+
         default:
             return prevState
     }

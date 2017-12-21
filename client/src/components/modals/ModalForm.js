@@ -1,12 +1,23 @@
 import React from "react";
 
 export default function ModalForm(props) {
+    const severity=[];
+    function fillArray() {
+        for (let i = 1; i < 6; i++){
+            if(props.state.severity === i) {
+                severity.push(<option key={i} value={i} checked="checked">{i}</option>)
+            } else {
+                severity.push(<option key={i} value={i}>{i}</option>)
+            }
 
+        }
+    }
+    fillArray();
     return(
         <form onSubmit={props.submit}id="add">
             <input name="date" onChange={props.change} type="date" value={props.state.date}/>
             <input name="hellion" onChange={props.change} type="text" value={props.state.hellion} placeholder="Hellion responsible"/>
-            <select onChange={props.change} name="frustration" initialvalue="default">
+            <select onChange={props.change} name="frustration">
                 <option value="default">Cause of Anger</option>
                 <option value="Insubordination">Insubordination</option>
                 <option value="Just plain stupid">Just plain stupid</option>

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getAllData, deleteData } from "../../redux/dbReducer";
+import { getAllData, deleteData, getSpecificData} from "../../redux/dbReducer";
+import { updateModal } from "../../redux/modalReducer";
 
  class BlogContainer extends React.Component {
     constructor() {
@@ -10,6 +11,7 @@ import { getAllData, deleteData } from "../../redux/dbReducer";
         }
         this.handleChange = this.handleChange.bind(this);
         this.delete = this.delete.bind(this);
+        this.update = this.update.bind(this);
     }
 
     componentDidMount() {
@@ -29,6 +31,11 @@ import { getAllData, deleteData } from "../../redux/dbReducer";
 
     delete(url) {
         this.props.deleteData(url)
+    }
+
+    update(url) {
+        this.props.getSpecificData(url);
+        this.props.updateModal();
     }
 
     render() {
@@ -75,6 +82,7 @@ import { getAllData, deleteData } from "../../redux/dbReducer";
                     <p>Punishment: {data.punishment}</p>
                     <p>Punishment Completed: {data.punDone}</p>
                     <button onClick={()=> {this.delete(data._id)}}>Delete</button>
+                    <button onClick={() => {this.update(data._id)}}>Update</button>
                 </div>
             )
         })
@@ -91,6 +99,7 @@ import { getAllData, deleteData } from "../../redux/dbReducer";
                     <p>Punishment: {data.punishment}</p>
                     <p>Punishment Completed: {data.punDone}</p>
                     <button onClick={()=> {this.delete(data._id)}}>Delete</button>
+                    <button onClick={() => {this.update(data._id)}}>Update</button>
                 </div>
             )
         })
@@ -126,4 +135,4 @@ function mapStateToProps(state) {
     return state.data
 }
 
-export default connect(mapStateToProps, { getAllData, deleteData })(BlogContainer)
+export default connect(mapStateToProps, { getAllData, deleteData, updateModal, getSpecificData })(BlogContainer)
