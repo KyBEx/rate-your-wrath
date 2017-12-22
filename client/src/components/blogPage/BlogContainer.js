@@ -34,6 +34,7 @@ import { updateModal } from "../../redux/modalReducer";
     }
 
     update(url) {
+        console.log(url);
         this.props.getSpecificData(url);
         this.props.updateModal();
     }
@@ -73,7 +74,7 @@ import { updateModal } from "../../redux/modalReducer";
             filteredData.length ?
             filteredData.map(data => {
             return (
-                <div key={data._id}>
+                <div className="blog-post" key={data._id}>
                     <p>Date: {data.date}</p>
                     <p>Hellion: {data.hellion}</p>
                     <p>Frustration: {data.frustration}</p>
@@ -90,7 +91,7 @@ import { updateModal } from "../../redux/modalReducer";
 
         : this.props.results ? this.props.results.map(data => {
             return (
-                <div key={data._id}>
+                <div className="blog-post" key={data._id}>
                     <p>Date: {data.date}</p>
                     <p>Hellion: {data.hellion}</p>
                     <p>Frustration: {data.frustration}</p>
@@ -110,19 +111,22 @@ import { updateModal } from "../../redux/modalReducer";
 
         return (
             <main>
-            <select onChange = {this.handleChange} name="hellion" initialvalue="default">
-                <option value="default">Hellion</option>
-                {hellion}
-            </select>
-            <select onChange = {this.handleChange} name="severity" initialvalue="default">
-                <option value="default">Severity</option>
-                {severity}
-            </select>
-            <select onChange = {this.handleChange} name = "punDone" initialvalue="default">
-                <option value = "default">Punishment Completed</option>
-                <option value = "true">True</option>
-                <option value = "false">False</option>
-            </select>
+                <div className="search">
+                <h3>Filter Options</h3>
+                <select className="search-select" onChange = {this.handleChange} name="hellion" initialvalue="default">
+                    <option value="default">Hellion</option>
+                    {hellion}
+                    </select>
+                    <select className="search-select" onChange = {this.handleChange} name="severity" initialvalue="default">
+                    <option value="default">Severity</option>
+                    {severity}
+                    </select>
+                    <select className="search-select" onChange = {this.handleChange} name = "punDone" initialvalue="default">
+                    <option value = "default">Punishment Completed</option>
+                    <option value = "true">True</option>
+                    <option value = "false">False</option>
+                </select>
+                </div>
                 <div>
                     {data}
                 </div>

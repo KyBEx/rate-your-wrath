@@ -35,6 +35,7 @@ storeRouter.route("/:id")
 
     .put((req,res) => {
         Post.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, item) => {
+            console.log(req.body)
             let update = Object.assign(item, req.body);
             update.save((err, item) => {
                 if(err) return res.status(500).send(err);

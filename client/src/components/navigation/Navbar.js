@@ -1,11 +1,11 @@
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap"
 import React from "react";
-import "./style.css";
+
 
 export default function Navigation(props) {
     return (
-      <Navbar className="nav" inverse collapseOnSelect>
+      <Navbar className="total-nav" inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="#">React-Bootstrap</a>

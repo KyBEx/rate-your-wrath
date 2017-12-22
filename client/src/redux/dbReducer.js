@@ -52,12 +52,13 @@ export function addData(data) {
     }
 }
 
-export function updateData(url) {
+export function updateData(url, data) {
     return dispatch => {
-        axios.put(`/post/${url}`)
+        axios.put(`/post/${url}`, data)
         .then(response => {
             dispatch({
                 type: "UPDATE_DATA",
+                data: response.data
             })
         })
     }
@@ -75,13 +76,14 @@ export function deleteData(url) {
     }
 }
 const initialState= {results: [],
-                    update: {date:"i",
-                    hellion:"i",
-                    frustration:"i",
-                    severity:"i",
-                    message:"i",
-                    punishment:"i",
-                    punDone:"i"}
+                    update: {date:"",
+                    hellion:"",
+                    frustration:"",
+                    severity:"",
+                    message:"",
+                    punishment:"",
+                    punDone:"",
+                    id: "",}
                     }
 export default function dbReducer(prevState = initialState, action) {
     switch(action.type) {
@@ -95,8 +97,12 @@ export default function dbReducer(prevState = initialState, action) {
             };
 
         case "UPDATE_DATA":
+            const origResults = [...prevState.results];
+            const updatedResults = origResults.filter(item => item._id !== action.data._id);
+            updatedResults.push(action.data)
             return {
-                update: action.data
+                results: updatedResults,
+                update: prevState.update
             };
 
         case "GET_ALL_DATA":
@@ -109,7 +115,8 @@ export default function dbReducer(prevState = initialState, action) {
             const results = [...prevState.results];
             const newResults = results.filter(item => item._id !== action.data.item._id
             );
-            return {results: newResults}
+            return {results: newResults,
+                    update: prevState.update}
 
         default:
             return prevState

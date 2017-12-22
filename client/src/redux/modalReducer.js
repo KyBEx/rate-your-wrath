@@ -34,7 +34,7 @@ export default function modalReducer(prevState = {}, action) {
             return {
                 modalChoice: "UPDATE_ITEM",
                 modalShow: true,
-                name: "Update"
+                type: "Update"
             };
         default:
             return prevState

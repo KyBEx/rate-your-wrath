@@ -15,7 +15,8 @@ class UpdateModal extends React.Component {
             severity: this.props.data.update.severity,
             message: this.props.data.update.message,
             punishment: this.props.data.update.punishment,
-            punDone: this.props.data.update.punDone
+            punDone: this.props.data.update.punDone,
+            id: this.props.data.update._id
             }
 
           this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +24,10 @@ class UpdateModal extends React.Component {
         }
 
         componentDidUpdate() {
-            if(this.props.data.update.date !== this.state.date) {
+            console.log(this.props.data.update);
+            console.log(this.state);
+            if(this.props.data.update._id !== this.state.id)
+                {
                 this.setState({
                     date: this.props.data.update.date,
                     hellion: this.props.data.update.hellion,
@@ -31,23 +35,16 @@ class UpdateModal extends React.Component {
                     severity: this.props.data.update.severity,
                     message: this.props.data.update.message,
                     punishment: this.props.data.update.punishment,
-                    punDone: this.props.data.update.punDone
+                    punDone: this.props.data.update.punDone,
+                    id: this.props.data.update._id
                 })
             }
         }
         handleSubmit(e){
             e.preventDefault();
-            this.props.addData(this.state)
-            this.setState({
-                date: "",
-                hellion:"",
-                frustration: "",
-                severity: "",
-                message: "",
-                punDone: "",
-                punishment:"",
-            })
-            e.target.reset();
+            this.props.updateData(this.props.data.update._id, this.state)
+
+
         }
 
         onChange(e){
@@ -65,36 +62,36 @@ class UpdateModal extends React.Component {
     render() {
         let show = this.props.data.update ? true : false;
 
-        const frustration = [];
-        let myFrustration = this.state.frustration;
-        function showFrust(){
-            for (let i = 0; i < 4; i++) {
-                const options = ["Insubordination", "Just plain stupid", "Shades of Damien", "BLARGH!"];
-                if(options[i] === myFrustration) {
-                    frustration.push(<option key = {i + Math.random()}>{myFrustration}</option>)
+        function selectOptions(stateValue, options, arr){
+            for (let i = 0; i < options.length; i++) {
+                if(options[i] === stateValue) {
+                    arr.push(<option key = {i + Math.random()}>{stateValue}</option>)
                 } else {
-                    frustration.push(<option key = {i + Math.random()}>{options[i]}</option>)
+                    arr.push(<option key = {i + Math.random()}>{options[i]}</option>)
                 }
 
                 }
             }
-        show ? showFrust() : null
+
+        const frustration = [];
+        const frustOptions = ["Insubordination", "Just plain stupid", "Shades of Damien", "BLARGH!"]
+        let myFrustration = this.state.frustration;
+        selectOptions(myFrustration, frustOptions, frustration)
 
         const severity = [];
+        const sevOptions=[1,2,3,4,5]
         let mySeverity = this.state.severity;
-        const showSeverity = () => {
-            for (let i = 1; i < 6; i++) {
-                if(i === mySeverity) {
-                    severity.push(<label><input key={i+1} name="severity"
-                     value={mySeverity} onChange={this.onChange} checked="true" type="radio"/>{mySeverity}</label>)
-                } else {
-                    severity.push(<label><input  name="severity"
-                     value={i} onChange={this.onChange} key = {i + Math.random()} type="radio"/>{i}</label>)
-                }
-            }
-        }
-        show ? showSeverity() : null
-        console.log(severity)
+        selectOptions(mySeverity, sevOptions, severity)
+
+        const punishment = [];
+        const punOptions = ["Dishes", "Banishment", "Grounding"]
+        let myPunishment = this.state.punishment;
+        selectOptions(myPunishment, punOptions, punishment)
+
+        const justice = [];
+        const justOptions = ["true", "false"]
+        let myJustice = this.state.punDone;
+        selectOptions(myJustice, justOptions, justice)
 
 
         return (
@@ -102,24 +99,43 @@ class UpdateModal extends React.Component {
         {show && <ModalWrapper>
             <div>
             <form onSubmit={this.handleSubmit}id="add">
-                <input name="date" onChange={this.onChange} type="date" value={this.state.date}/>
-                <input name="hellion" onChange={this.onChange} type="text" value={this.state.hellion}/>
-                <select onChange={this.onChange} name="frustration" value={myFrustration}>
+                <label className="label">Date of Incident
+                <input className="modal-content" name="date" onChange={this.onChange} type="date" value={this.state.date}/>
+                </label>
+
+                <label className="label">Hellion
+                <input className="modal-content" name="hellion" onChange={this.onChange} type="text" value={this.state.hellion}/>
+                </label>
+
+                <label className="label">Cause of Anger
+                    <select className="modal-content" onChange={this.onChange} name="frustration" value={myFrustration}>
                     {frustration}
+                    </select>
+                </label>
+
+                <label className="label">Rate Your Anger
+                    <select className="modal-content" onChange={this.onChange} name="severity" value={mySeverity}>
+                    {severity}
                 </select>
-                {severity}
-                <select name="punishment" onChange={this.onChange} initialvalue="default">
-                    <option name="" value="default">Choose your Wrath</option>
+                </label>
+
+                <label className="label">Choose Your Wrath
+                <select className="modal-content" name="punishment" onChange={this.onChange} initialvalue="default">
                     <option value="grounding">Grounding</option>
                     <option value="dishes">Dishes</option>
                     <option value="banishment">Banishment</option>
                 </select>
-                <select name="punDone" onChange={this.onChange} initialvalue="default">
-                    <option value="default">Justice Dispensed?</option>
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
+                </label>
+
+                <label className="label">Justice Dispensed?
+                <select className="modal-content" name="punDone" onChange={this.onChange} initialvalue="default">
+                    {justice}
                 </select>
-                <textarea onChange={this.onChange} name="message"></textarea>
+                </label>
+
+                <label className="label">Message
+                <textarea className="modal-content" onChange={this.onChange} name="message" value={this.state.message}></textarea>
+                </label>
                 <button>Save Update</button>
             </form>
             </div>

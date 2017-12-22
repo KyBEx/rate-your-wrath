@@ -1,0 +1,59 @@
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(105,105,105, .5);
+
+}
+
+.form {
+    width: 50%;
+    height: 500px;
+    margin: auto;
+}
+
+.modal-content{
+    display: block;
+}
+
+.inline {
+    display: inline-block;
+}
+
+.label {
+    display: block !important;
+    color: black;
+    text-align: left;
+}
+
+.blog-post {
+    display: block;
+    text-align: center;
+    margin: auto;
+    height: 300px;
+}
+
+.search {
+    height: 300px;
+    width: 250px;
+    background-color: grey;
+    position: fixed;
+    margin-top: 52px
+}
+
+.search-select {
+    display: block;
+    width: 75%;
+}
+
+.total-nav {
+    position: fixed;
+    margin-bottom: 0px;
+    display: block;
+}

@@ -3,7 +3,7 @@ import Home from "./homepage/HomeContainer";
 import Blog from "./blogPage/BlogContainer";
 import ModalSwitch from "./modals/ModalSwitch";
 import Navigation from "./navigation/Navbar";
-import "./appStyle.css";
+import "../style.css";
 import { Switch, Route} from "react-router-dom";
 
 
