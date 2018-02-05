@@ -39,6 +39,16 @@
     height: 300px;
 }
 
+.blog-err {
+    display: block;
+    vertical-align: middle;
+    text-align: center;
+    margin: auto;
+    height: 300px;
+    z-index: 5;
+    padding-top: 100px;
+}
+
 .search {
     height: 300px;
     width: 250px;
@@ -53,7 +63,17 @@
 }
 
 .total-nav {
-    position: fixed;
+    /*position: fixed;*/
     margin-bottom: 0px;
     display: block;
+    width: 100%;
+    /*opacity: 0*/
+}
+
+@media only screen and (max-width: 1050px) {
+    .search {
+        height: 150px;
+        width: 100%;
+        position: fixed;
+    }
 }

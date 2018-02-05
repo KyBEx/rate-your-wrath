@@ -24,8 +24,6 @@ class UpdateModal extends React.Component {
         }
 
         componentDidUpdate() {
-            console.log(this.props.data.update);
-            console.log(this.state);
             if(this.props.data.update._id !== this.state.id)
                 {
                 this.setState({

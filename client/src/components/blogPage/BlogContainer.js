@@ -87,7 +87,7 @@ import { updateModal } from "../../redux/modalReducer";
                 </div>
             )
         })
-        : <p>That selection has no data</p>
+        : <p className="blog-err">That selection has no data</p>
 
         : this.props.results ? this.props.results.map(data => {
             return (
