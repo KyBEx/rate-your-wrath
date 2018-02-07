@@ -1,11 +1,13 @@
 import React from "react";
 import "./home.css";
 import { connect } from "react-redux";
-import { addModal, updateModal } from "../../redux/modalReducer"
+import { addModal, updateModal } from "../../redux/modalReducer";
+import Navigation from "../navigation/Navbar";
 
  function Home (props) {
     return (
         <main>
+        <Navigation/>
         <div className="body-center top-box">
             <h1 className="header-text">RATE YOUR WRATH</h1>
         </div>

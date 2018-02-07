@@ -14,9 +14,9 @@ export default function Navigation(props) {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav pullRight>
-          <NavItem eventKey={1} href="#">
+          <LinkContainer to="/login"><NavItem eventKey={1} href="#">
             Login
-          </NavItem>
+          </NavItem></LinkContainer>
           <NavItem eventKey={2} href="#">
             Sign up
           </NavItem>
