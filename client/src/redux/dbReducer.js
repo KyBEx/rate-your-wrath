@@ -20,7 +20,7 @@ import axios from "axios"
 // }
 
 export function getAllData() {
-    return dispatch => {axios.get("/post").then(response => {
+    return dispatch => {axios.get("/api/post").then(response => {
         dispatch({
             type: "GET_ALL_DATA",
             data: response.data
@@ -30,7 +30,7 @@ export function getAllData() {
 }
 
 export function getSpecificData(url) {
-    return dispatch => {axios.get(`./post/${url}`).then(response => {
+    return dispatch => {axios.get(`/api/post/${url}`).then(response => {
         dispatch({
             type: "GET_SPECIFIC_DATA",
             data: response.data
@@ -42,7 +42,7 @@ export function getSpecificData(url) {
 
 export function addData(data) {
     return dispatch => {
-        axios.post("/post", data)
+        axios.post("/api/post", data)
             .then(response => {
                 dispatch({
                     type: "ADD_DATA",
@@ -54,7 +54,7 @@ export function addData(data) {
 
 export function updateData(url, data) {
     return dispatch => {
-        axios.put(`/post/${url}`, data)
+        axios.put(`/api/post/${url}`, data)
         .then(response => {
             dispatch({
                 type: "UPDATE_DATA",
@@ -66,7 +66,7 @@ export function updateData(url, data) {
 
 export function deleteData(url) {
     return dispatch => {
-        axios.delete(`/post/${url}`)
+        axios.delete(`/api/post/${url}`)
         .then(response => {
             dispatch({
                 type:"DELETE_DATA",

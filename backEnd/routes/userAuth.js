@@ -30,3 +30,6 @@ authRoutes.post("/login", (req, res) => {
         }
     })
 })
+
+
+module.exports = authRoutes;
