@@ -10,7 +10,7 @@ authRoutes.post("/signup", (req, res) => {
         const newUser = new User (req.body);
         newUser.save(err => {
             if (err) return res.status(500).send(err);
-            return res.stauts(201).send({msg: "Your account has been created. Please log in to continue", newUser})
+            return res.status(201).send({msg: "Your account has been created. Please log in to continue", newUser})
         })
     })
 })
