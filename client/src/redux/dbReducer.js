@@ -1,23 +1,11 @@
-import axios from "axios"
+import axios from "axios";
+axios.interceptors.request.use((config)=> {
+  const token = localStorage.getItem("token");
+  config.headers.Authorization = `Bearer ${token}`;
+  return config
+})
 
-// export function getData(query) {
-//     function getProps(query){const propNames = Object.getOwnPropertyNames(query);
-//         const queryStrings = propNames.map(propName => {
-//             return propName+"="+query[propName]
-//         })
-//             return queryStrings
-//         }
-//     const qParams = query ? getProps(query) : null
-//     return dispatch => {
-//         axios.get(`/post?${qParams}`)
-//         .then(response => {
-//             dispatch({
-//                 type: "GET_DATA",
-//                 data: response.data
-//             })
-//         })
-//     }
-// }
+
 
 export function getAllData() {
     return dispatch => {axios.get("/api/post").then(response => {

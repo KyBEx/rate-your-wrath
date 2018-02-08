@@ -16,7 +16,7 @@ authRoutes.post("/signup", (req, res) => {
 })
 
 authRoutes.post("/login", (req, res) => {
-    User.findOne({userName: req.body.userName.toLowerCase()}, (err, user) => {
+    User.findOne({userName: req.body.username.toLowerCase()}, (err, user) => {
         if (err) return res.status(500).send(err);
         if (!user) {
             return res.status(403).send({err: "Username or password is incorrect"})

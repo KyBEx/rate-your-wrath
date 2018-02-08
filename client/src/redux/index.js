@@ -1,12 +1,14 @@
 import modal from "./modalReducer";
 import data from "./dbReducer";
+import userLogin from "./authorization";
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import thunk from "redux-thunk"
 
 const rootReducer = combineReducers(
     {
         modal,
-        data
+        data,
+        userLogin
     }
 )
 

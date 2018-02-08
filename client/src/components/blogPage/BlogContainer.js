@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getAllData, deleteData, getSpecificData} from "../../redux/dbReducer";
 import { updateModal } from "../../redux/modalReducer";
+import { persistLogin } from "../../redux/authorization";
 
  class BlogContainer extends React.Component {
     constructor() {
@@ -15,7 +16,9 @@ import { updateModal } from "../../redux/modalReducer";
     }
 
     componentDidMount() {
-        this.props.getAllData();
+        if (Object.keys(this.props.userLogin).length === 0) {
+            this.props.persistLogin(localStorage.getItem("token"))
+        }
     }
 
     handleChange(e) {
@@ -136,7 +139,7 @@ import { updateModal } from "../../redux/modalReducer";
 }
 
 function mapStateToProps(state) {
-    return state.data
+    return state
 }
 
-export default connect(mapStateToProps, { getAllData, deleteData, updateModal, getSpecificData })(BlogContainer)
+export default connect(mapStateToProps, { getAllData, deleteData, updateModal, getSpecificData, persistLogin })(BlogContainer)

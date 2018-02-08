@@ -16,6 +16,7 @@ server.use(bodyParser.json())
 server.use("/api", expressJwt({secret: process.env.SECRET}));
 server.use("/api/post", require("./routes/postHandle"));
 server.use("/auth", require("./routes/userAuth"));
+server.use("/api/user", require("./routes/userRoutes"));
 
 
 

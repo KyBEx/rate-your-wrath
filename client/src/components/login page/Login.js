@@ -1,6 +1,7 @@
 import React from "react";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
+import {login} from "../../redux/authorization";
 
 class Login extends React.Component {
     constructor() {
@@ -8,7 +9,7 @@ class Login extends React.Component {
         this.state = {
             username:"",
             password:"",
-            loginAttempt: false
+            // loginAttempt: false
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -24,16 +25,17 @@ class Login extends React.Component {
     onSubmit(e){
         e.preventDefault();
         this.props.login(this.state);
-        this.setState({
-            loginAttempt: true
-        })
+        // this.setState({
+        //     loginAttempt: true
+        // })
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.user.status) {
+        console.log("hello");
+        if (nextProps.userLogin.status) {
             alert("username or password is incorrect");
         } else {
-            this.props.history.push("/profile");
+            this.props.history.push("/blog");
         }
     }
 
@@ -44,9 +46,9 @@ class Login extends React.Component {
                 <div>
                     <h3>Log In</h3>
                     <div>
-                        <input onChange={this.handleChange} name="userName" type="text" placeholder="Username" value={this.state.userName}/>
-                        <input onChange={this.handleChange} name="password" type="text" placeholder="Password" value={this.state.password}/>
-                        <button>Login</button>
+                        <input onChange={this.handleChange} name="username" type="text" placeholder="Username" value={this.state.userName}/>
+                        <input onChange={this.handleChange} name="password" type="password" placeholder="Password" value={this.state.password}/>
+                        <button onClick = {this.onSubmit}>Login</button>
                     </div>
                 </div>
             </main>
@@ -60,5 +62,5 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(
-  connect(mapStateToProps, null)(Login)
+  connect(mapStateToProps, {login})(Login)
 );
