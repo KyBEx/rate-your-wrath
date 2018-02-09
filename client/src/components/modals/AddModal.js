@@ -23,7 +23,6 @@ class AddModal extends React.Component {
     handleSubmit(e){
         e.preventDefault();
         let date = new Date();
-        console.log(typeof date)
         this.props.addData(this.state)
         this.setState({
             date: "",

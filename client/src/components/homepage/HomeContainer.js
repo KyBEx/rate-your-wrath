@@ -18,8 +18,7 @@ import Navigation from "../navigation/Navbar";
             <h1>Do You Frustrate Yourself By Not Punishing Them?</h1>
         </div>
         <div className = "body-center footer">
-            <button onClick={() => {props.addModal()}}>Add New</button>
-            <button onClick={() => {props.updateModal()}}>Update Existing</button>
+            
         </div>
         </main>
     )

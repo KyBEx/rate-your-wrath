@@ -7,8 +7,10 @@ axios.interceptors.request.use((config)=> {
 
 
 
-export function getAllData() {
-    return dispatch => {axios.get("/api/post").then(response => {
+export function getAllData(req) {
+    console.log(req.user)
+    return dispatch => {axios.get("/api/post/").then(response => {
+        console.log(response)
         dispatch({
             type: "GET_ALL_DATA",
             data: response.data
@@ -30,7 +32,7 @@ export function getSpecificData(url) {
 
 export function addData(data) {
     return dispatch => {
-        axios.post("/api/post", data)
+        axios.post("/api/post/add", data)
             .then(response => {
                 dispatch({
                     type: "ADD_DATA",
@@ -76,7 +78,11 @@ const initialState= {results: [],
 export default function dbReducer(prevState = initialState, action) {
     switch(action.type) {
         case "ADD_DATA":
-            return prevState;
+            console.log(action.data)
+            const toUpdate = prevState;
+            toUpdate.results = [...toUpdate.results, action.data]
+            console.log(toUpdate);
+            return toUpdate;
 
         case "GET_SPECIFIC_DATA":
             return {

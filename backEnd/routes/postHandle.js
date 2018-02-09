@@ -4,8 +4,9 @@ const Post = require('../models/post');
 
 // think i need to move the traditional post to the id section
 storeRouter.route('/')
-    .post((req, res) => {
-        Post.find({'user.type': 'req.body._id'}, (err, items) => {
+    .get((req, res) => {
+        
+        Post.find({user: req.user._id}, (err, items) => {
             if (err) return res.status(500).send(err);
             res.send(items)
         })
@@ -16,7 +17,10 @@ storeRouter.route('/add')
     .post((req,res) => {
         let newItem = new Post(req.body);
         newItem.date = new Date(newItem.date);
+        newItem.user = req.user._id;
+        console.log(newItem);
         newItem.save((err, item) => {
+            console.log(item);
             if(err) return res.status(500).send(err);
             res.status(201).send(item)
         })

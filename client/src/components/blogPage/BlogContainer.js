@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllData, deleteData, getSpecificData} from "../../redux/dbReducer";
-import { updateModal } from "../../redux/modalReducer";
+import { updateModal, addModal } from "../../redux/modalReducer";
 import { persistLogin } from "../../redux/authorization";
 
  class BlogContainer extends React.Component {
@@ -13,12 +13,33 @@ import { persistLogin } from "../../redux/authorization";
         this.handleChange = this.handleChange.bind(this);
         this.delete = this.delete.bind(this);
         this.update = this.update.bind(this);
+        this.refresh = this.refresh.bind(this);
     }
 
     componentDidMount() {
         if (Object.keys(this.props.userLogin).length === 0) {
             this.props.persistLogin(localStorage.getItem("token"))
         }
+
+        // this.props.getAllData(this.props.userLogin.user._id);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.props.userLogin.user) {
+            this.props.getAllData(nextProps.userLogin.user._id);
+        }
+
+        // if (this.props.data.length !== nextProps.data.length) {
+        //     this.setState({
+        //         update: true
+        //     })
+        // }
+    }
+
+    refresh() {
+        this.setState({
+            addNew: true
+        })
     }
 
     handleChange(e) {
@@ -43,10 +64,11 @@ import { persistLogin } from "../../redux/authorization";
     }
 
     render() {
+        // pulling in User post data
+        // this.props.userLogin.user ? this.props.getAllData(this.props.userLogin.user._id) : null;
         // setting up the options for the filter
-
-        const hellion = this.props.results ? this.props.results.map((data, i) => {
-            let check = this.props.results.findIndex(item=> item.hellion === data.hellion);
+        const hellion = this.props.data.results ? this.props.data.results.map((data, i) => {
+            let check = this.props.data.results.findIndex(item=> item.hellion === data.hellion);
             if (check === i) {
                 return <option value = {data.hellion} key = {data._id+data.hellion}>{data.hellion}</option>
             }
@@ -64,7 +86,7 @@ import { persistLogin } from "../../redux/authorization";
 
         const stateData = this.state;
 
-        const filteredData = this.props.results ? this.props.results.filter(data => {
+        const filteredData = this.props.data.results ? this.props.data.results.filter(data => {
             for (let key in stateData) {
                 if(stateData[key] !== data[key] && stateData[key] !== "default") {
                     return false
@@ -92,7 +114,7 @@ import { persistLogin } from "../../redux/authorization";
         })
         : <p className="blog-err">That selection has no data</p>
 
-        : this.props.results ? this.props.results.map(data => {
+        : this.props.data.results ? this.props.data.results.map(data => {
             return (
                 <div className="blog-post" key={data._id}>
                     <p>Date: {data.date}</p>
@@ -102,7 +124,7 @@ import { persistLogin } from "../../redux/authorization";
                     <p>Message: {data.message}</p>
                     <p>Punishment: {data.punishment}</p>
                     <p>Punishment Completed: {data.punDone}</p>
-                    <button onClick={()=> {this.delete(data._id)}}>Delete</button>
+                    <button onClick={()=> {this.delete(data._id)} }>Delete</button>
                     <button onClick={() => {this.update(data._id)}}>Update</button>
                 </div>
             )
@@ -111,24 +133,25 @@ import { persistLogin } from "../../redux/authorization";
         : null
 
 
-
         return (
             <main>
                 <div className="search">
-                <h3>Filter Options</h3>
-                <select className="search-select" onChange = {this.handleChange} name="hellion" initialvalue="default">
-                    <option value="default">Hellion</option>
-                    {hellion}
-                    </select>
+                    <h3>Filter Options</h3>
+                    <select className="search-select" onChange = {this.handleChange} name="hellion" initialvalue="default">
+                        <option value="default">Hellion</option>
+                            {hellion}
+                        </select>
                     <select className="search-select" onChange = {this.handleChange} name="severity" initialvalue="default">
-                    <option value="default">Severity</option>
-                    {severity}
+                        <option value="default">Severity</option>
+                            {severity}
                     </select>
                     <select className="search-select" onChange = {this.handleChange} name = "punDone" initialvalue="default">
-                    <option value = "default">Punishment Completed</option>
-                    <option value = "true">True</option>
-                    <option value = "false">False</option>
-                </select>
+                        <option value = "default">Punishment Completed</option>
+                        <option value = "true">True</option>
+                        <option value = "false">False</option>
+                    </select>
+                    <button onClick={() => {this.props.addModal()}}>Add New</button>
+                    <button onClick={() => {this.props.updateModal()}}>Update Existing</button>
                 </div>
                 <div>
                     {data}
@@ -142,4 +165,4 @@ function mapStateToProps(state) {
     return state
 }
 
-export default connect(mapStateToProps, { getAllData, deleteData, updateModal, getSpecificData, persistLogin })(BlogContainer)
+export default connect(mapStateToProps, { getAllData, deleteData, updateModal, addModal, getSpecificData, persistLogin })(BlogContainer)
