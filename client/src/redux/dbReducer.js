@@ -78,10 +78,8 @@ const initialState= {results: [],
 export default function dbReducer(prevState = initialState, action) {
     switch(action.type) {
         case "ADD_DATA":
-            console.log(action.data)
             const toUpdate = prevState;
             toUpdate.results = [...toUpdate.results, action.data]
-            console.log(toUpdate);
             return toUpdate;
 
         case "GET_SPECIFIC_DATA":

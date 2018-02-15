@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllData, deleteData, getSpecificData} from "../../redux/dbReducer";
-import { updateModal, addModal } from "../../redux/modalReducer";
-import { persistLogin } from "../../redux/authorization";
+import { addModal } from "../../redux/modalReducer";
+import { persistLogin, logout } from "../../redux/authorization";
+import {withRouter} from "react-router-dom";
 
  class BlogContainer extends React.Component {
     constructor() {
@@ -21,8 +22,19 @@ import { persistLogin } from "../../redux/authorization";
             this.props.persistLogin(localStorage.getItem("token"))
         }
 
-        // this.props.getAllData(this.props.userLogin.user._id);
+        if (this.props.userLogin.user) {
+            this.props.getAllData(this.props.userLogin.user._id)
+        }
+
+        if (!localStorage.getItem("token")) {
+            this.props.history.push("/login")
+        }
+
+        // if (localStorage.getItem("token")) {
+        //     this.props.getAllData(this.props.userLogin.user._id)
+        // }
     }
+
 
     componentWillReceiveProps(nextProps) {
         if (!this.props.userLogin.user) {
@@ -151,7 +163,7 @@ import { persistLogin } from "../../redux/authorization";
                         <option value = "false">False</option>
                     </select>
                     <button onClick={() => {this.props.addModal()}}>Add New</button>
-                    <button onClick={() => {this.props.updateModal()}}>Update Existing</button>
+                    <button onClick={() => {this.props.logout(this.props.history)}}>Logout</button>
                 </div>
                 <div>
                     {data}
@@ -165,4 +177,6 @@ function mapStateToProps(state) {
     return state
 }
 
-export default connect(mapStateToProps, { getAllData, deleteData, updateModal, addModal, getSpecificData, persistLogin })(BlogContainer)
+export default withRouter(
+    connect(mapStateToProps, { getAllData, deleteData, logout, addModal, getSpecificData, persistLogin })(BlogContainer)
+)

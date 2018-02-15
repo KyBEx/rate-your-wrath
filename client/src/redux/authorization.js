@@ -7,6 +7,7 @@ axios.interceptors.request.use((config)=> {
 })
 
 export function login(user){
+    console.log(user)
     return dispatch => {
         axios.post("/auth/login", user).then(response => {
             localStorage.setItem("token", response.data.token);
@@ -32,9 +33,16 @@ export function login(user){
 export function signup(user){
     return dispatch => {
         axios.post("/auth/signup", user).then(response => {
+            console.log(response)
             dispatch({
                 type: "SIGNUP",
                 user: response.data
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: "ERROR",
+                err: err.response
             })
         })
     }
@@ -52,22 +60,37 @@ export function persistLogin(token) {
   }
 }
 
+export function logout(history) {
+  localStorage.removeItem("token");
+  history.push("/");
+  return {
+    type: "LOGOUT"
+  }
+}
 
-export default function authReducer(prevState = {}, action) {
+const defaultUser = {}
+
+export default function authReducer(prevState = defaultUser, action) {
     switch(action.type) {
         case "LOGIN":
         // may need to do a fetch for their posts
             return {
-                user: action.user,
+                user: action.user
             };
         case "SIGNUP":
             return {
-                msg: action.msg
+                user: action.user
             };
         case "PERSIST":
             return {
                 user: action.user
             };
+        case "ERROR":
+            return {
+                err: action.err
+            };
+        case "LOGOUT":
+            return defaultUser;
         default:
             return prevState
     }

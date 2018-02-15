@@ -17,9 +17,9 @@ export default function Navigation(props) {
           <LinkContainer to="/login"><NavItem eventKey={1} href="#">
             Login
           </NavItem></LinkContainer>
-          <NavItem eventKey={2} href="#">
+          <LinkContainer to ="/signup"><NavItem eventKey={2} href="#">
             Sign up
-          </NavItem>
+          </NavItem></LinkContainer>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

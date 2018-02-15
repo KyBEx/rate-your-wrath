@@ -31,7 +31,6 @@ class Login extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("hello");
         if (nextProps.userLogin.status) {
             alert("username or password is incorrect");
         } else {
