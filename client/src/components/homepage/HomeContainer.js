@@ -1,5 +1,4 @@
 import React from "react";
-import "./home.css";
 import { connect } from "react-redux";
 import { addModal, updateModal } from "../../redux/modalReducer";
 import Navigation from "../navigation/Navbar";
@@ -18,7 +17,7 @@ import Navigation from "../navigation/Navbar";
             <h1>Do You Frustrate Yourself By Not Punishing Them?</h1>
         </div>
         <div className = "body-center footer">
-            
+
         </div>
         </main>
     )

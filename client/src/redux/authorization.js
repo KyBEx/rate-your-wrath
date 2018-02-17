@@ -16,16 +16,12 @@ export function login(user){
                 type: "LOGIN",
                 user: userInfo.user
             })
-            // console.log(userInfo);
-            // axios.post("/api/post/", userInfo).then(response => {
-            //     console.log(response.data)
-            //     dispatch({
-            //         type: "LOGIN",
-            //         user: userInfo,
-            //         userPosts: response.data
-            //     });
-            // })
-
+        })
+        .catch(err => {
+            dispatch({
+                type: "ERROR",
+                err: err.response
+            })
         })
     }
 }
