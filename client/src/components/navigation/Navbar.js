@@ -5,11 +5,8 @@ import React from "react";
 
 export default function Navigation(props) {
     return (
-        <Navbar inverse collapseOnSelect>
+        <Navbar inverse collapseOnSelect id="custom-nav">
       <Navbar.Header>
-        <Navbar.Brand>
-          <a href="#brand">Rate Your Wrath</a>
-        </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
       <Navbar.Collapse>

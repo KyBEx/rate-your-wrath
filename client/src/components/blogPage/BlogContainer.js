@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllData, deleteData, getSpecificData} from "../../redux/dbReducer";
-import { addModal } from "../../redux/modalReducer";
+import { addModal, updateModal } from "../../redux/modalReducer";
 import { persistLogin, logout } from "../../redux/authorization";
 import {withRouter} from "react-router-dom";
 
@@ -129,15 +129,15 @@ import {withRouter} from "react-router-dom";
         : this.props.data.results ? this.props.data.results.map(data => {
             return (
                 <div className="blog-post" key={data._id}>
-                    <p>Date: {data.date}</p>
-                    <p>Hellion: {data.hellion}</p>
-                    <p>Frustration: {data.frustration}</p>
-                    <p>Severity: {data.severity}</p>
-                    <p>Message: {data.message}</p>
-                    <p>Punishment: {data.punishment}</p>
-                    <p>Punishment Completed: {data.punDone}</p>
-                    <button onClick={()=> {this.delete(data._id)} }>Delete</button>
-                    <button onClick={() => {this.update(data._id)}}>Update</button>
+                    <p><span>Date:</span> {data.date}</p>
+                    <p><span>Hellion:</span> {data.hellion}</p>
+                    <p><span>Frustration:</span> {data.frustration}</p>
+                    <p><span>Severity:</span> {data.severity}</p>
+                    <p><span>Message:</span> {data.message}</p>
+                    <p><span>Punishment:</span> {data.punishment}</p>
+                    <p><span>Punishment Completed:</span> {data.punDone}</p>
+                    <button className="search-button" onClick={()=> {this.delete(data._id)} }>Delete</button>
+                    <button className="search-button" onClick={() => {this.update(data._id)}}>Update</button>
                 </div>
             )
         })
@@ -146,9 +146,10 @@ import {withRouter} from "react-router-dom";
 
 
         return (
-            <main>
+            <main className="window-view">
                 <div className="search">
-                    <h3>Filter Options</h3>
+                    <h2>Menu</h2>
+                    <h4>Filter Options</h4>
                     <select className="search-select" onChange = {this.handleChange} name="hellion" initialvalue="default">
                         <option value="default">Hellion</option>
                             {hellion}
@@ -162,8 +163,10 @@ import {withRouter} from "react-router-dom";
                         <option value = "true">True</option>
                         <option value = "false">False</option>
                     </select>
-                    <button onClick={() => {this.props.addModal()}}>Add New</button>
-                    <button onClick={() => {this.props.logout(this.props.history)}}>Logout</button>
+                    <h4>Add</h4>
+                    <button className="search-button" onClick={() => {this.props.addModal()}}>Add New</button>
+                    <h4>Logout</h4>
+                    <button className="search-button" onClick={() => {this.props.logout(this.props.history)}}>Logout</button>
                 </div>
                 <div>
                     {data}
@@ -178,5 +181,5 @@ function mapStateToProps(state) {
 }
 
 export default withRouter(
-    connect(mapStateToProps, { getAllData, deleteData, logout, addModal, getSpecificData, persistLogin })(BlogContainer)
+    connect(mapStateToProps, { getAllData, deleteData, logout, addModal, updateModal, getSpecificData, persistLogin })(BlogContainer)
 )

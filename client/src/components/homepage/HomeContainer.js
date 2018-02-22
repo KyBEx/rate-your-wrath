@@ -6,18 +6,11 @@ import Navigation from "../navigation/Navbar";
  function Home (props) {
     return (
         <main>
-        <Navigation/>
         <div className="body-center top-box">
-            <h1 className="header-text">RATE YOUR WRATH</h1>
-        </div>
-        <div className="body-center middle-box">
-            <h1>Do Your Children Frustrate You?</h1>
-        </div>
-        <div className="body-center bottom-box">
-            <h1>Do You Frustrate Yourself By Not Punishing Them?</h1>
-        </div>
-        <div className = "body-center footer">
-
+        <Navigation/>
+            <h1 className = "home-info">Rate Your Wrath</h1>
+            <h3 className = "home-info">Do Your Children Frustrate You? Do You Frustrate Yourself By Not Punishing Them?</h3>
+            <h3 className = "home-info">Rate Your Wrath can help--clinically proven to lead to more well behaved children.</h3>
         </div>
         </main>
     )
