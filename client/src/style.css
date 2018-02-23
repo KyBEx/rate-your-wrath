@@ -319,7 +319,7 @@
 .search {
     height: 350px;
     width: 250px;
-    background-color: #9DD9D2;
+    background-color: #75BBA7;
     position: fixed;
     font-family: 'Roboto'
 }
@@ -336,10 +336,11 @@
     margin: auto;
     height: auto;
     width: 500px;
+    color: #7AE7C7;
     background-color: #6C809A;
     margin-bottom: 20px;
     padding: 15px;
-    opacity: .5;
+    opacity: .9;
 }
 
 .blog-post * {
@@ -368,17 +369,73 @@
     border: black solid 2px;
 }
 
+
+
 @media only screen and (max-width: 576px) {
     .top-box{
-        height: 500px;
+        height: 100vh;
     }
 }
 
 
 @media only screen and (max-width: 1050px) {
+
+    .blog-post {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
     .search {
-        height: 150px;
+        height: 200px;
         width: 100%;
         position: fixed;
+        z-index: 1;
+    }
+
+    .search h2, .search h4 {
+        visibility: hidden;
+        position: relative;
+    }
+
+    .search button {
+        position: absolute;
+    }
+
+    .search-select {
+        position: absolute;
+        top: 0;
+        height: 40px;
+        text-align: center;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .search-select.one {
+        margin-top: 10px;
+    }
+
+    .search-select.two {
+        margin-top: 55px;
+    }
+
+    .search-select.three {
+        margin-top: 100px;
+    }
+
+    .b1, .b2 {
+        left: 0;
+        margin-left: 5%;
+    }
+
+    .b1 {
+        transform: translateY(73%);
+    }
+
+    .b2 {
+        margin-left: 200px;
+    }
+
+    .blog-container {
+        margin-top: 220px;
     }
 }

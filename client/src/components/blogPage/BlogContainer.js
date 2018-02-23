@@ -150,25 +150,25 @@ import {withRouter} from "react-router-dom";
                 <div className="search">
                     <h2>Menu</h2>
                     <h4>Filter Options</h4>
-                    <select className="search-select" onChange = {this.handleChange} name="hellion" initialvalue="default">
+                    <select className="search-select one" onChange = {this.handleChange} name="hellion" initialvalue="default">
                         <option value="default">Hellion</option>
                             {hellion}
                         </select>
-                    <select className="search-select" onChange = {this.handleChange} name="severity" initialvalue="default">
+                    <select className="search-select two" onChange = {this.handleChange} name="severity" initialvalue="default">
                         <option value="default">Severity</option>
                             {severity}
                     </select>
-                    <select className="search-select" onChange = {this.handleChange} name = "punDone" initialvalue="default">
+                    <select className="search-select three" onChange = {this.handleChange} name = "punDone" initialvalue="default">
                         <option value = "default">Punishment Completed</option>
                         <option value = "true">True</option>
                         <option value = "false">False</option>
                     </select>
                     <h4>Add</h4>
-                    <button className="search-button" onClick={() => {this.props.addModal()}}>Add New</button>
+                    <button className="search-button b1" onClick={() => {this.props.addModal()}}>Add New</button>
                     <h4>Logout</h4>
-                    <button className="search-button" onClick={() => {this.props.logout(this.props.history)}}>Logout</button>
+                    <button className="search-button b2" onClick={() => {this.props.logout(this.props.history)}}>Logout</button>
                 </div>
-                <div>
+                <div className="blog-container">
                     {data}
                 </div>
             </main>
