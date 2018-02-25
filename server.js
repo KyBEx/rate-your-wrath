@@ -15,7 +15,7 @@ require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/wrath-post');
 server.use(bodyParser.json())
 
-server.use("/api", expressJwt({secret: process.env.SECRET}));
+server.use("/api", expressJwt({secret: process.env.SECRET || 123}));
 server.use("/api/post", require("./routes/postHandle"));
 server.use("/auth", require("./routes/userAuth"));
 server.use("/api/user", require("./routes/userRoutes"));
