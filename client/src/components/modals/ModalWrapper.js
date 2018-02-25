@@ -13,10 +13,10 @@ const ModalWrapper = props => {
     return (
         <div className="modal form">
         <header>
-            <h4 className = "modal-content inline">{props.modal.type} Your Wrath</h4>
-            <button className = "modal-content inline" onClick = {closeModal}>Close</button>
+            <h4 className = "modal-content inline head">{props.modal.type} Your Wrath</h4>
         </header>
         {props.children}
+        <button className = "modal-content close-button" onClick = {closeModal}>Close</button>
         </div>
     )
 }
