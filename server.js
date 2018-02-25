@@ -8,10 +8,11 @@ const port = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 require("dotenv").config();
 const expressJwt = require("express-jwt");
-const path = require("path")
+const path = require("path");
+require("dotenv").config();
 
 
-mongoose.connect('mongodb://localhost/wrath-post');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/wrath-post');
 server.use(bodyParser.json())
 
 server.use("/api", expressJwt({secret: process.env.SECRET}));
