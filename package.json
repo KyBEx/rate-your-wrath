@@ -21,8 +21,8 @@
     "jsonwebtoken": "^8.1.1",
     "mongoose": "^4.13.10",
     "nodemon": "^1.14.12"
-    },
-"engines": {
+  },
+  "engines": {
     "node": "6.11.4"
-    }
+  }
 }
