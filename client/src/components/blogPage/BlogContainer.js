@@ -119,8 +119,8 @@ import {withRouter} from "react-router-dom";
                     <p>Message: {data.message}</p>
                     <p>Punishment: {data.punishment}</p>
                     <p>Punishment Completed: {data.punDone}</p>
-                    <button onClick={()=> {this.delete(data._id)}}>Delete</button>
-                    <button onClick={() => {this.update(data._id)}}>Update</button>
+                    <button className="search-button" onClick={()=> {this.delete(data._id)}}>Delete</button>
+                    <button className="search-button" onClick={() => {this.update(data._id)}}>Update</button>
                 </div>
             )
         })
