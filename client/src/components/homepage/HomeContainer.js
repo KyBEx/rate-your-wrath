@@ -7,7 +7,7 @@ import Navigation from "../navigation/Navbar";
     return (
         <main>
         <div className="body-center top-box">
-        <Navigation/>
+        <Navigation {...props}/>
             <h1 className = "home-info">Rate Your Wrath</h1>
             <h3 className = "home-info">Do Your Children Frustrate You? Do You Frustrate Yourself By Not Punishing Them?</h3>
             <h3 className = "home-info">Rate Your Wrath can help--clinically proven to lead to more well behaved children.</h3>

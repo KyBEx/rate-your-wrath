@@ -4,6 +4,8 @@ import React from "react";
 
 
 export default function Navigation(props) {
+    console.log(props);
+    console.log(typeof props.match.path)
     return (
         <Navbar inverse collapseOnSelect id="custom-nav">
       <Navbar.Header>
@@ -11,14 +13,23 @@ export default function Navigation(props) {
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav pullRight>
-          <LinkContainer to="/login"><NavItem eventKey={1} href="#">
-            Login
-          </NavItem></LinkContainer>
-          <LinkContainer to ="/signup"><NavItem eventKey={2} href="#">
-            Sign up
-          </NavItem></LinkContainer>
+            {props.match.path !== "/" &&
+                <LinkContainer to="/"><NavItem eventKey={2} href="#">
+                    Home
+                </NavItem></LinkContainer>
+            }
+            {props.match.path !== "/login" &&
+                <LinkContainer to="/login"><NavItem eventKey={1} href="#">
+                    Login
+                </NavItem></LinkContainer>
+            }
+            {props.match.path !== "/signup" &&
+                <LinkContainer to ="/signup"><NavItem eventKey={3} href="#">
+                    Sign up
+                </NavItem></LinkContainer>
+            }
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-    )
+)
 }

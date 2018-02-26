@@ -2,6 +2,7 @@ import React from "react";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {signup} from "../../redux/authorization";
+import Navigation from "../navigation/Navbar";
 
 
 class SignUp extends React.Component {
@@ -63,6 +64,7 @@ class SignUp extends React.Component {
         console.log(username)
         return(
             <main className="form-container">
+                <Navigation {...this.props}/>
                 <h1 className="info-header">Rate Your Wrath</h1>
                 <div className="info-form plus">
                     <h3>Sign Up</h3>

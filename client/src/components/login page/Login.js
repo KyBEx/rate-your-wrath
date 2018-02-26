@@ -2,6 +2,7 @@ import React from "react";
 import {withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {login} from "../../redux/authorization";
+import Navigation from "../navigation/Navbar";
 
 class Login extends React.Component {
     constructor() {
@@ -43,6 +44,7 @@ class Login extends React.Component {
 
         return(
             <main className="form-container">
+                <Navigation {...this.props}/>
                 <h1 className="info-header">Rate Your Wrath</h1>
                 <div className="info-form">
                     <h3>Log In</h3>

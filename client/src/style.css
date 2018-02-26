@@ -393,6 +393,10 @@ modal-window {
     width: 30%;
 }
 
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+     background-color: transparent;
+}
+
 @media only screen and (max-width: 576px) {
     .top-box{
         height: 100vh;
