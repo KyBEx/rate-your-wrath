@@ -4,8 +4,6 @@ import React from "react";
 
 
 export default function Navigation(props) {
-    console.log(props);
-    console.log(typeof props.match.path)
     return (
         <Navbar inverse collapseOnSelect id="custom-nav">
       <Navbar.Header>

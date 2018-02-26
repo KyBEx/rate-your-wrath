@@ -98,27 +98,27 @@ class UpdateModal extends React.Component {
             <div>
             <form onSubmit={this.handleSubmit}id="add">
                 <label className="label">Date of Incident
-                <input className="modal-content" name="date" onChange={this.onChange} type="date" value={this.state.date}/>
+                <input className="modal-stuff" name="date" onChange={this.onChange} type="date" value={this.state.date}/>
                 </label>
 
                 <label className="label">Hellion
-                <input className="modal-content" name="hellion" onChange={this.onChange} type="text" value={this.state.hellion}/>
+                <input className="modal-stuff" name="hellion" onChange={this.onChange} type="text" value={this.state.hellion}/>
                 </label>
 
                 <label className="label">Cause of Anger
-                    <select className="modal-content" onChange={this.onChange} name="frustration" value={myFrustration}>
+                    <select className="modal-stuff" onChange={this.onChange} name="frustration" value={myFrustration}>
                     {frustration}
                     </select>
                 </label>
 
                 <label className="label">Rate Your Anger
-                    <select className="modal-content" onChange={this.onChange} name="severity" value={mySeverity}>
+                    <select className="modal-stuff" onChange={this.onChange} name="severity" value={mySeverity}>
                     {severity}
                 </select>
                 </label>
 
                 <label className="label">Choose Your Wrath
-                <select className="modal-content" name="punishment" onChange={this.onChange} initialvalue="default">
+                <select className="modal-stuff" name="punishment" onChange={this.onChange} initialvalue="default">
                     <option value="grounding">Grounding</option>
                     <option value="dishes">Dishes</option>
                     <option value="banishment">Banishment</option>
@@ -126,15 +126,15 @@ class UpdateModal extends React.Component {
                 </label>
 
                 <label className="label">Justice Dispensed?
-                <select className="modal-content" name="punDone" onChange={this.onChange} initialvalue="default">
+                <select className="modal-stuff" name="punDone" onChange={this.onChange} initialvalue="default">
                     {justice}
                 </select>
                 </label>
 
                 <label className="label">Message
-                <textarea className="modal-content" onChange={this.onChange} name="message" value={this.state.message}></textarea>
+                <textarea className="modal-stuff" onChange={this.onChange} name="message" value={this.state.message}></textarea>
                 </label>
-                <button>Save Update</button>
+                <button className="search-button">Save Update</button>
             </form>
             </div>
         </ModalWrapper>}
