@@ -26,11 +26,11 @@ export default function ModalForm(props) {
                 <option value="BLARGH!">BLARGH!</option>
             </select>
             <p className="modal-text">How angry are you?</p>
-            <label><input className="modal-stuff inline radio" onChange={props.change} name="severity" value="1" type="radio"/>1</label>
-            <label><input className="modal-stuff inline radio" onChange={props.change} name="severity" value="2" type="radio"/>2</label>
-            <label><input className="modal-stuff inline radio" onChange={props.change} name="severity" value="3" type="radio"/>3</label>
-            <label><input className="modal-stuff inline radio" onChange={props.change} name="severity" value="4" type="radio"/>4</label>
-            <label><input className="modal-stuff inline radio" onChange={props.change} name="severity" value="5" type="radio"/>5</label>
+            <label className="radio"><input className="modal-stuff inline" onChange={props.change} name="severity" value="1" type="radio"/>1</label>
+            <label className="radio"><input className="modal-stuff inline" onChange={props.change} name="severity" value="2" type="radio"/>2</label>
+            <label className="radio"><input className="modal-stuff inline" onChange={props.change} name="severity" value="3" type="radio"/>3</label>
+            <label className="radio"><input className="modal-stuff inline" onChange={props.change} name="severity" value="4" type="radio"/>4</label>
+            <label className="radio"><input className="modal-stuff inline" onChange={props.change} name="severity" value="5" type="radio"/>5</label>
             <select className="modal-stuff" name="punishment" onChange={props.change} initialvalue="default">
                 <option name="" value="default">Choose your Wrath</option>
                 <option value="Grounding">Grounding</option>

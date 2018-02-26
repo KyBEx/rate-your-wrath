@@ -97,42 +97,42 @@ class UpdateModal extends React.Component {
         {show && <ModalWrapper>
             <div>
             <form onSubmit={this.handleSubmit}id="add">
-                <label className="label">Date of Incident
-                <input className="modal-stuff" name="date" onChange={this.onChange} type="date" value={this.state.date}/>
+                <label>Date of Incident
+                <input className="modal-stuff update-input" name="date" onChange={this.onChange} type="date" value={this.state.date}/>
                 </label>
 
-                <label className="label">Hellion
-                <input className="modal-stuff" name="hellion" onChange={this.onChange} type="text" value={this.state.hellion}/>
+                <label>Hellion
+                <input className="modal-stuff update-input" name="hellion" onChange={this.onChange} type="text" value={this.state.hellion}/>
                 </label>
 
-                <label className="label">Cause of Anger
-                    <select className="modal-stuff" onChange={this.onChange} name="frustration" value={myFrustration}>
+                <label>Cause of Anger
+                    <select className="modal-stuff update-input" onChange={this.onChange} name="frustration" value={myFrustration}>
                     {frustration}
                     </select>
                 </label>
 
-                <label className="label">Rate Your Anger
-                    <select className="modal-stuff" onChange={this.onChange} name="severity" value={mySeverity}>
+                <label>Rate Your Anger
+                    <select className="modal-stuff update-input" onChange={this.onChange} name="severity" value={mySeverity}>
                     {severity}
                 </select>
                 </label>
 
-                <label className="label">Choose Your Wrath
-                <select className="modal-stuff" name="punishment" onChange={this.onChange} initialvalue="default">
+                <label>Choose Your Wrath
+                <select className="modal-stuff update-input" name="punishment" onChange={this.onChange} initialvalue="default">
                     <option value="grounding">Grounding</option>
                     <option value="dishes">Dishes</option>
                     <option value="banishment">Banishment</option>
                 </select>
                 </label>
 
-                <label className="label">Justice Dispensed?
-                <select className="modal-stuff" name="punDone" onChange={this.onChange} initialvalue="default">
+                <label>Justice Dispensed?
+                <select className="modal-stuff update-input" name="punDone" onChange={this.onChange} initialvalue="default">
                     {justice}
                 </select>
                 </label>
 
-                <label className="label">Message
-                <textarea className="modal-stuff" onChange={this.onChange} name="message" value={this.state.message}></textarea>
+                <label>Message
+                <textarea className="modal-stuff update-input" onChange={this.onChange} name="message" value={this.state.message}></textarea>
                 </label>
                 <button className="search-button">Save Update</button>
             </form>

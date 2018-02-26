@@ -1,12 +1,4 @@
 
-.label {
-    display: block !important;
-    color: black;
-    text-align: left;
-}
-
-
-
 .blog-err {
     display: block;
     vertical-align: middle;
@@ -14,7 +6,7 @@
     margin: auto;
     height: 300px;
     z-index: 5;
-    padding-top: 100px;
+    padding-top: 100px
 }
 
 
@@ -356,9 +348,7 @@ modal-window {
     background-color: #75BBA7;
 }
 
-label {
-    color: black
-}
+
 
 .modal * {
     margin-left: 5%;
@@ -381,10 +371,6 @@ label {
     margin-bottom: 10px;
 }
 
-#add .inline {
-    display: inline-block;
-    margin-left: 10%;
-}
 
 .head {
     width: 45%;
@@ -407,6 +393,24 @@ label {
     font-family: 'Roboto';
     font-size: 15px;
     font-weight: bold;
+}
+
+label {
+    color: black;
+    display: block;
+}
+
+.radio {
+    display: inline-block;
+}
+
+.checkbox input[type=checkbox], .checkbox-inline input[type=checkbox], .radio input[type=radio], .radio-inline input[type=radio] {
+    position: absolute;
+    margin-left: 15px;
+}
+
+.update-input {
+    margin-left: 0px;
 }
 
 @media only screen and (max-width: 576px) {
