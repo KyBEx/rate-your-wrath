@@ -422,6 +422,10 @@ label {
         width:50px;
         height: 40px;
     }
+
+    .info-form {
+        width: 80%;
+    }
 }
 
 
