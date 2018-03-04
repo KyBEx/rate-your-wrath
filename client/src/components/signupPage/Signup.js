@@ -68,6 +68,7 @@ class SignUp extends React.Component {
                 <h1 className="info-header">Rate Your Wrath</h1>
                 <div className="info-form plus">
                     <h3>Sign Up</h3>
+                    <form onSubmit={()=> this.props.history.push("/login")}>
                     <div>
                         <input onChange={this.handleChange} name="username"
                             type="text" placeholder="Username"
@@ -89,6 +90,7 @@ class SignUp extends React.Component {
                             <button className="form-button" onClick={()=> this.props.history.push("/login")}>Login</button>
                         }
                     </div>
+                    </form>
                     {validation &&
                         <p className="err-msg">{`${validation} cannot be blank`}</p>
 

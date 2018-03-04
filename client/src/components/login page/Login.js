@@ -26,9 +26,6 @@ class Login extends React.Component {
     onSubmit(e){
         e.preventDefault();
         this.props.login(this.state);
-        // this.setState({
-        //     loginAttempt: true
-        // })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -49,9 +46,11 @@ class Login extends React.Component {
                 <div className="info-form">
                     <h3>Log In</h3>
                     <div>
+                        <form onSubmit={this.onSubmit}>
                         <input onChange={this.handleChange} name="username" type="text" placeholder="Username" value={this.state.userName} autoFocus/>
                         <input onChange={this.handleChange} name="password" type="password" placeholder="Password" value={this.state.password}/>
                         <button className="form-button" onClick = {this.onSubmit}>Login</button>
+                        </form>
                     </div>
                     {this.props.userLogin.err &&
                         <p className="err-msg">The username or password you entered is incorrect.</p>}

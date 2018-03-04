@@ -419,6 +419,7 @@ label {
     height: 25%;
     width: 40%;
     background-color: black;
+    margin: auto;
 }
 
 .blog-err {
