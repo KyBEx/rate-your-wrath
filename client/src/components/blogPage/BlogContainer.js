@@ -29,10 +29,6 @@ import {withRouter} from "react-router-dom";
         if (!localStorage.getItem("token")) {
             this.props.history.push("/login")
         }
-
-        // if (localStorage.getItem("token")) {
-        //     this.props.getAllData(this.props.userLogin.user._id)
-        // }
     }
 
 
@@ -40,12 +36,6 @@ import {withRouter} from "react-router-dom";
         if (!this.props.userLogin.user) {
             this.props.getAllData(nextProps.userLogin.user._id);
         }
-
-        // if (this.props.data.length !== nextProps.data.length) {
-        //     this.setState({
-        //         update: true
-        //     })
-        // }
     }
 
     refresh() {
@@ -124,7 +114,7 @@ import {withRouter} from "react-router-dom";
                 </div>
             )
         })
-        : <p className="blog-err">That selection has no data</p>
+        : <div className="blog-err-container"><p className="blog-err">That selection has no data</p></div>
 
         : this.props.data.results ? this.props.data.results.map(data => {
             return (

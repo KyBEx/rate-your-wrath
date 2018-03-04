@@ -413,6 +413,19 @@ label {
     margin-left: 0px;
 }
 
+/*error messeage*/
+
+.blog-err-container {
+    height: 25%;
+    width: 40%;
+    background-color: black;
+}
+
+.blog-err {
+    font-size: 50px;
+    color: white;
+}
+
 @media only screen and (max-width: 576px) {
     .top-box{
         height: 100vh;
